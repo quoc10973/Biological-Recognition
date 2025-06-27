@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# Django
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+*.sqlite3-journal
+
+# Bỏ qua toàn bộ file migrations (trừ __init__.py để không lỗi import)
+**/migrations/*
+!**/migrations/__init__.py
+
+# Static & media files
+/staticfiles/
+/media/
+/static/
+
+# IDE/editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+
+# Cache & tmp
+.cache/
+*.tmp
+*.temp
+
+# Runtime
+*.pid
+
+# Coverage
+htmlcov/
+.coverage
+coverage.xml
+.pytest_cache/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# BỎ QUA FILE .env (file chứa biến môi trường bí mật)
+.env
+.env.*
