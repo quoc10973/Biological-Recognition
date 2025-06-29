@@ -31,3 +31,6 @@ class SimilarityDTOSerializer(serializers.Serializer):
                 'label': instance['label'],
                 'similarity': round(instance['similarity'], 3)
             }
+        
+class ImageUploadSerializer(serializers.Serializer):
+    image = serializers.ImageField()

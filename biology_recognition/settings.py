@@ -28,7 +28,13 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-default-key-do-not-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+env_hosts = os.getenv("DJANGO_ALLOWED_HOSTS")
+if env_hosts:
+    # ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(",")
+    ALLOWED_HOSTS = env_hosts.split(",")
+else:
+    # Default to localhost if not set
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -42,7 +48,30 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api',
+    'drf_spectacular',
+    'drf_spectacular_sidecar',  # Optional, for serving OpenAPI schema as a sidecar
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'COMPONENT_SPLIT_REQUEST': True,  # 👈 BẮT BUỘC để hiện file upload đúng kiểu
+        'TITLE': 'Plant Biology Recognition API',
+    'DESCRIPTION': 'API cho hệ thống nhận dạng sinh học từ ảnh trong sách giáo khoa.',
+    'VERSION': '1.0.0',
+    'TOS': 'https://example.com/terms/',  # Tuỳ chọn
+    'CONTACT': {
+        'name': 'SWD391 Team 4',
+        'email': 'SWD391@team4.org',
+        'url': 'https://swd391team4.org'
+    },
+    'LICENSE': {
+        'name': 'MIT License',
+        'url': 'https://opensource.org/licenses/MIT',
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
